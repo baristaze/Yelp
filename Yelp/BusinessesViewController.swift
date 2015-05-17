@@ -18,7 +18,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         super.viewDidLoad()
 
         self.bizTableView.estimatedRowHeight = 110
-        self.bizTableView.rowHeight = UITableViewAutomaticDimension
+        //self.bizTableView.rowHeight = UITableViewAutomaticDimension
         
 //        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
 //            self.businesses = businesses
@@ -50,7 +50,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         
         return bizCell
     }
-    /*
+    
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 110
     }
@@ -58,7 +58,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 110
     }
-    */
+    
     /*
     // MARK: - Navigation
 
