@@ -35,7 +35,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G9q-SE-J4l">
-                                                    <rect key="frame" x="115" y="13" width="272" height="83"/>
+                                                    <rect key="frame" x="115" y="3" width="272" height="103"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="business name business name business name business name " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p62-Il-2ud">
                                                             <rect key="frame" x="5" y="5" width="207" height="21"/>
@@ -96,7 +96,7 @@
                                                 <constraint firstItem="G9q-SE-J4l" firstAttribute="trailing" secondItem="EFt-bU-jvD" secondAttribute="trailingMargin" constant="-5" id="pLd-nQ-VVy"/>
                                                 <constraint firstItem="G9q-SE-J4l" firstAttribute="leading" secondItem="UQ3-PO-qDu" secondAttribute="trailing" constant="10" id="roO-gr-MT7"/>
                                                 <constraint firstItem="UQ3-PO-qDu" firstAttribute="leading" secondItem="EFt-bU-jvD" secondAttribute="leading" constant="5" id="vHV-tF-qtf"/>
-                                                <constraint firstItem="G9q-SE-J4l" firstAttribute="top" secondItem="EFt-bU-jvD" secondAttribute="topMargin" constant="5" id="zkc-Cj-26d"/>
+                                                <constraint firstItem="G9q-SE-J4l" firstAttribute="top" secondItem="EFt-bU-jvD" secondAttribute="topMargin" constant="-5" id="zkc-Cj-26d"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
