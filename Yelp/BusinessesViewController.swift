@@ -17,6 +17,9 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.bizTableView.estimatedRowHeight = 110
+        self.bizTableView.rowHeight = UITableViewAutomaticDimension
+        
 //        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
 //            self.businesses = businesses
 //        })
@@ -37,13 +40,17 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let biz = self.businesses[indexPath.row]
         let bizCell = self.bizTableView.dequeueReusableCellWithIdentifier("yelp.biz.cell", forIndexPath: indexPath) as! BizTableCell
-        let url = NSURL(string:"https://pbs.twimg.com/profile_images/1532363355/sag.jpg")
-        bizCell.imageView?.setImageWithURL(url)
+        let bizPhotoUrl = NSURL(string:"https://pbs.twimg.com/profile_images/1532363355/sag.jpg")
+        let starUrl = NSURL(string:"http://dinesmart365.com/Images/stars/star_5.png")
+        bizCell.imageView?.setImageWithURL(bizPhotoUrl)
+        bizCell.ratingImageView.setImageWithURL(starUrl)
+        
         return bizCell
     }
-    
+    /*
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 110
     }
@@ -51,7 +58,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 110
     }
-    
+    */
     /*
     // MARK: - Navigation
 

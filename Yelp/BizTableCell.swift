@@ -11,8 +11,8 @@ import UIKit
 class BizTableCell: UITableViewCell {
 
 
-    
     @IBOutlet weak var bizPhotoView: UIImageView!
+    @IBOutlet weak var ratingImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
