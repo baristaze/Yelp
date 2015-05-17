@@ -10,6 +10,8 @@ import UIKit
 
 class BizTableCell: UITableViewCell {
 
+
+    
     @IBOutlet weak var bizPhotoView: UIImageView!
     
     override func awakeFromNib() {

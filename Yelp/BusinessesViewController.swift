@@ -13,7 +13,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     var businesses: [Business]!
     
     @IBOutlet weak var bizTableView: UITableView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,7 +39,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let biz = self.businesses[indexPath.row]
         let bizCell = self.bizTableView.dequeueReusableCellWithIdentifier("yelp.biz.cell", forIndexPath: indexPath) as! BizTableCell
-        bizCell.imageView?.setImageWithURL(biz.imageURL!)
+        let url = NSURL(string:"https://pbs.twimg.com/profile_images/1532363355/sag.jpg")
+        bizCell.imageView?.setImageWithURL(url)
         return bizCell
     }
     
