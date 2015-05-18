@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="B1A-ad-oJW">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="B1A-ad-oJW">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -124,6 +124,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xck-zu-qqf" firstAttribute="top" secondItem="B1A-ad-oJW" secondAttribute="bottom" id="7o5-Rw-l6q"/>
+                            <constraint firstItem="B1A-ad-oJW" firstAttribute="top" secondItem="XPM-o7-ZGN" secondAttribute="top" id="Jaf-eA-ai3"/>
+                            <constraint firstItem="B1A-ad-oJW" firstAttribute="leading" secondItem="XPM-o7-ZGN" secondAttribute="leading" id="P03-wv-u1V"/>
+                            <constraint firstAttribute="trailing" secondItem="B1A-ad-oJW" secondAttribute="trailing" id="h1P-my-D0Q"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pQ9-4o-0l8">
                         <barButtonItem key="leftBarButtonItem" title="Filter" width="120" id="IYN-3L-fp7">
@@ -315,7 +321,6 @@
         <!--Navigation Controller-->
         <scene sceneID="gQY-Hm-NGt">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="51o-tP-TMN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7aD-9n-wag" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qWu-4e-bEr">
@@ -327,6 +332,7 @@
                         <segue destination="AJC-CO-OCV" kind="relationship" relationship="rootViewController" id="WN8-0N-1Ji"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="51o-tP-TMN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4480" y="352"/>
         </scene>
