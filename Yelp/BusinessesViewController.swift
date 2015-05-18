@@ -8,11 +8,13 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDataSource {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
 
     var businesses: [Business]!
     let defaultImage:UIImage? = UIImage(named: "yelpLogo.png")
     
+    @IBOutlet var filterBarButton: UIBarButtonItem!
+    @IBOutlet var searchBar: UISearchBar!
     @IBOutlet weak var bizTableView: UITableView!
 
     override func viewDidLoad() {
@@ -21,9 +23,10 @@ class BusinessesViewController: UIViewController, UITableViewDataSource {
         self.bizTableView.estimatedRowHeight = 110
         self.bizTableView.rowHeight = UITableViewAutomaticDimension
         
-//        Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
-//            self.businesses = businesses
-//        })
+        self.navigationItem.leftBarButtonItem = self.filterBarButton
+        self.navigationItem.titleView = self.searchBar;
+        self.searchBar.delegate = self
+        self.searchBar.placeholder = "Restaurants"
         
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
@@ -71,6 +74,35 @@ class BusinessesViewController: UIViewController, UITableViewDataSource {
         return 79;
     }
     
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
+        
+        println("searched")
+        /*
+        self.reloadTableData();
+        
+        if(!self.isFiltered()) {
+            NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("endSearching"), userInfo: nil, repeats: false)
+        }
+        */
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        self.endSearching()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        self.endSearching()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.endSearching()
+    }
+    
+    func endSearching() {
+        self.searchBar.endEditing(true)
+        self.searchBar.resignFirstResponder()
+    }
+
     /*
     // MARK: - Navigation
 
