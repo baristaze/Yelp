@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource {
 
     var businesses: [Business]!
     
@@ -42,14 +42,24 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let biz = self.businesses[indexPath.row]
-        let bizCell = self.bizTableView.dequeueReusableCellWithIdentifier("yelp.biz.cell", forIndexPath: indexPath) as! BizTableCell
-        bizCell.bizNameLabel.text = biz.name
-        bizCell.addressLabel.text = biz.address
-        bizCell.categoriesLabel.text = biz.categories
-        bizCell.imageView?.setImageWithURL(biz.imageURL)
-        bizCell.ratingImageView.setImageWithURL(biz.ratingImageURL)
+        let cell = self.bizTableView.dequeueReusableCellWithIdentifier("yelp.biz.cell", forIndexPath: indexPath) as! BizTableCell
+        cell.bizNameLabel.text = biz.name
+        cell.addressLabel.text = biz.address
+        cell.categoriesLabel.text = biz.categories
+        cell.imageView?.setImageWithURL(biz.imageURL)
+        cell.ratingImageView.setImageWithURL(biz.ratingImageURL)
         
-        return bizCell
+        if (cell.respondsToSelector(Selector("setPreservesSuperviewLayoutMargins:"))){
+            cell.preservesSuperviewLayoutMargins = false
+        }
+        if (cell.respondsToSelector(Selector("setSeparatorInset:"))){
+            cell.separatorInset = UIEdgeInsetsMake(0, 4, 0, 0)
+        }
+        if (cell.respondsToSelector(Selector("setLayoutMargins:"))){
+            cell.layoutMargins = UIEdgeInsetsZero
+        }
+        
+        return cell
     }
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

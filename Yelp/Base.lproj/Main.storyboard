@@ -29,6 +29,7 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="UQ3-PO-qDu">
                                                     <rect key="frame" x="5" y="5" width="70" height="70"/>
+                                                    <color key="backgroundColor" red="1" green="0.28341584190000002" blue="0.26330932219999997" alpha="0.68000000000000005" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="70" id="Sxs-jH-Txa"/>
                                                         <constraint firstAttribute="width" constant="70" id="h8h-6N-DVM"/>
@@ -118,7 +119,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="CSs-6Z-ZRu" id="ftL-cX-6dH"/>
-                                    <outlet property="delegate" destination="CSs-6Z-ZRu" id="Sd9-H1-qih"/>
+                                    <outlet property="delegate" destination="CSs-6Z-ZRu" id="LQX-OL-RpC"/>
                                 </connections>
                             </tableView>
                         </subviews>
