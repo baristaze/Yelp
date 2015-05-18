@@ -160,16 +160,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qN3-hh-UU9">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="qN3-hh-UU9">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="yelp.filter.cell" rowHeight="200" id="sTq-IL-kUc" customClass="FilterCell" customModule="Yelp" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="yelp.filter.switch.cell" rowHeight="61" id="sTq-IL-kUc" customClass="SwitchCell" customModule="Yelp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sTq-IL-kUc" id="hhx-BP-RDR">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGJ-6U-fsS">
+                                                    <rect key="frame" x="8" y="8" width="42" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PpI-Iy-ML0">
+                                                    <rect key="frame" x="543" y="8" width="51" height="44"/>
+                                                    <connections>
+                                                        <action selector="onSwitchValueChanged:" destination="sTq-IL-kUc" eventType="valueChanged" id="UM0-xU-n8U"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="EGJ-6U-fsS" secondAttribute="bottom" constant="8" id="1nx-SH-sOc"/>
+                                                <constraint firstAttribute="trailing" secondItem="PpI-Iy-ML0" secondAttribute="trailing" constant="8" id="7Bg-Fd-6HU"/>
+                                                <constraint firstItem="EGJ-6U-fsS" firstAttribute="top" secondItem="hhx-BP-RDR" secondAttribute="top" constant="8" id="dwp-CH-6gf"/>
+                                                <constraint firstAttribute="bottom" secondItem="PpI-Iy-ML0" secondAttribute="bottom" constant="8" id="g7q-o6-XCa"/>
+                                                <constraint firstItem="PpI-Iy-ML0" firstAttribute="top" secondItem="hhx-BP-RDR" secondAttribute="top" constant="8" id="hqy-GC-OzL"/>
+                                                <constraint firstItem="EGJ-6U-fsS" firstAttribute="leading" secondItem="hhx-BP-RDR" secondAttribute="leading" constant="8" id="tdP-1f-MSY"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="theLabel" destination="EGJ-6U-fsS" id="RrP-t7-iWa"/>
+                                            <outlet property="theSwitch" destination="PpI-Iy-ML0" id="s5D-2K-WfE"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -179,6 +205,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qN3-hh-UU9" firstAttribute="leading" secondItem="tK7-xp-rJm" secondAttribute="leading" id="IR7-y7-7Kb"/>
+                            <constraint firstItem="ksu-3M-skD" firstAttribute="top" secondItem="qN3-hh-UU9" secondAttribute="bottom" id="MeN-YF-Fig"/>
+                            <constraint firstItem="qN3-hh-UU9" firstAttribute="top" secondItem="tK7-xp-rJm" secondAttribute="top" id="N1F-Dj-omC"/>
+                            <constraint firstAttribute="trailing" secondItem="qN3-hh-UU9" secondAttribute="trailing" id="fxn-rT-nzL"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="filterTableView" destination="qN3-hh-UU9" id="6r7-Ii-GEx"/>

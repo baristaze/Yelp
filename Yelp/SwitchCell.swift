@@ -8,8 +8,17 @@
 
 import UIKit
 
-class FilterCell: UITableViewCell {
+@objc protocol SwitchCellDelegate {
+    optional func switchCell(switchCell:SwitchCell, didChangeValue value:Bool)
+}
 
+class SwitchCell: UITableViewCell {
+    
+    weak var delegate:SwitchCellDelegate?
+    
+    @IBOutlet weak var theLabel: UILabel!
+    @IBOutlet weak var theSwitch: UISwitch!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +30,7 @@ class FilterCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func onSwitchValueChanged(sender: AnyObject) {
+        self.delegate?.switchCell?(self, didChangeValue:theSwitch.on)
+    }
 }
