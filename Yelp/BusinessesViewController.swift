@@ -11,6 +11,7 @@ import UIKit
 class BusinessesViewController: UIViewController, UITableViewDataSource {
 
     var businesses: [Business]!
+    let defaultImage:UIImage? = UIImage(named: "yelpLogo.png")
     
     @IBOutlet weak var bizTableView: UITableView!
 
@@ -46,7 +47,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource {
         cell.bizNameLabel.text = biz.name
         cell.addressLabel.text = biz.address
         cell.categoriesLabel.text = biz.categories
-        cell.imageView?.setImageWithURL(biz.imageURL)
+        cell.bizPhotoView.setImageWithURL(biz.imageURL, placeholderImage:defaultImage!)
         cell.ratingImageView.setImageWithURL(biz.ratingImageURL)
         
         if (cell.respondsToSelector(Selector("setPreservesSuperviewLayoutMargins:"))){
