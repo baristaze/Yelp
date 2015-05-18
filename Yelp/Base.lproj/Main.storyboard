@@ -197,6 +197,66 @@
                                             <outlet property="theSwitch" destination="PpI-Iy-ML0" id="s5D-2K-WfE"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="yelp.filter.distance" id="EGH-tp-MpB" customClass="TextCell" customModule="Yelp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="584" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EGH-tp-MpB" id="qW2-DZ-BBa">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0.5 miles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UK9-G4-O41">
+                                                    <rect key="frame" x="8" y="8" width="568" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="UK9-G4-O41" secondAttribute="bottom" constant="8" id="0Yu-Za-DHU"/>
+                                                <constraint firstItem="UK9-G4-O41" firstAttribute="top" secondItem="qW2-DZ-BBa" secondAttribute="top" constant="8" id="1bp-ww-J4z"/>
+                                                <constraint firstAttribute="trailing" secondItem="UK9-G4-O41" secondAttribute="trailing" constant="8" id="HgU-dx-lpb"/>
+                                                <constraint firstItem="UK9-G4-O41" firstAttribute="leading" secondItem="qW2-DZ-BBa" secondAttribute="leading" constant="8" id="qO7-f0-QiF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="label" destination="UK9-G4-O41" id="yvO-wF-qNc"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="yelp.filter.combo.cell" rowHeight="91" id="GdO-fn-osy" customClass="ComboCell" customModule="Yelp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GdO-fn-osy" id="AVs-DS-uNV">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.3 miles" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awG-mX-pl3">
+                                                    <rect key="frame" x="8" y="8" width="69" height="74"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kga-xE-6U7">
+                                                    <rect key="frame" x="541" y="8" width="51" height="74"/>
+                                                    <state key="normal" title="change">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="onButton:" destination="GdO-fn-osy" eventType="touchUpInside" id="eQx-iO-p0Y"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="kga-xE-6U7" secondAttribute="trailing" constant="8" id="0ho-oF-buq"/>
+                                                <constraint firstAttribute="bottom" secondItem="kga-xE-6U7" secondAttribute="bottom" constant="8" id="0iM-Nr-kez"/>
+                                                <constraint firstItem="awG-mX-pl3" firstAttribute="leading" secondItem="AVs-DS-uNV" secondAttribute="leading" constant="8" id="HPe-nd-ts4"/>
+                                                <constraint firstItem="awG-mX-pl3" firstAttribute="top" secondItem="AVs-DS-uNV" secondAttribute="top" constant="8" id="PUY-2E-9ls"/>
+                                                <constraint firstAttribute="bottom" secondItem="awG-mX-pl3" secondAttribute="bottom" constant="8" id="ftI-Rg-UfB"/>
+                                                <constraint firstItem="kga-xE-6U7" firstAttribute="top" secondItem="AVs-DS-uNV" secondAttribute="top" constant="8" id="vdY-1o-FMS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="button" destination="kga-xE-6U7" id="wEW-Kv-nci"/>
+                                            <outlet property="label" destination="awG-mX-pl3" id="fHJ-Io-Vqc"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="AJC-CO-OCV" id="bVD-uV-IhV"/>

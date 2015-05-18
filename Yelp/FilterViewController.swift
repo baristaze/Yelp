@@ -8,15 +8,24 @@
 
 import UIKit
 
-class FilterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SwitchCellDelegate {
+class FilterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SwitchCellDelegate, ComboCellDelegate {
 
     @IBOutlet weak var filterTableView: UITableView!
     
     var categories: [[String:String]]!
     var categoryStates = [Int:Bool]()
     
+    var distances: [[String:String]]!
+    var distanceExpanded = false
+    var selectedDistanceFilter:Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        filterTableView.estimatedRowHeight = 30
+        filterTableView.rowHeight = UITableViewAutomaticDimension
+        
+        distances = yelpDistances()
 
         self.categories = self.yelpCategories()
     }
@@ -36,7 +45,7 @@ class FilterViewController: UIViewController, UITableViewDataSource, UITableView
         
         switch(section){
             case 1:
-                return 0
+                return distanceExpanded ? 7 : 1
             case 2:
                 return 0
             case 3:
@@ -63,16 +72,59 @@ class FilterViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         switch(indexPath.section){
-        case 1: return SwitchCell()
+        case 1:
+            if(indexPath.row == 0) {
+                let cell = tableView.dequeueReusableCellWithIdentifier("yelp.filter.combo.cell", forIndexPath: indexPath) as! ComboCell
+                cell.isExpanded = distanceExpanded
+                cell.label.text = distances[selectedDistanceFilter]["name"]
+                cell.delegate = self
+                trimLeadingPaddingOnCell(cell)
+                return cell
+            }
+            else {
+                var distance:String? = distances[indexPath.row-1]["name"]
+                let cell = tableView.dequeueReusableCellWithIdentifier("yelp.filter.distance", forIndexPath: indexPath) as! TextCell
+                cell.label.text = distance!
+                trimLeadingPaddingOnCell(cell)
+                return cell
+            }
         case 2: return SwitchCell()
         case 3:
             let cell = tableView.dequeueReusableCellWithIdentifier("yelp.filter.switch.cell", forIndexPath: indexPath) as! SwitchCell
             cell.theLabel.text = categories[indexPath.row]["name"]
             cell.theSwitch.on = categoryStates[indexPath.row] ?? false
             cell.delegate = self
+            trimLeadingPaddingOnCell(cell)
             return cell
         default: return SwitchCell()
         }
+    }
+    
+    func trimLeadingPaddingOnCell (cell:UITableViewCell) {
+        
+        if (cell.respondsToSelector(Selector("setPreservesSuperviewLayoutMargins:"))){
+            cell.preservesSuperviewLayoutMargins = false
+        }
+        if (cell.respondsToSelector(Selector("setSeparatorInset:"))){
+            cell.separatorInset = UIEdgeInsetsMake(0, 4, 0, 0)
+        }
+        if (cell.respondsToSelector(Selector("setLayoutMargins:"))){
+            cell.layoutMargins = UIEdgeInsetsZero
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        distanceExpanded = !distanceExpanded
+        if(indexPath.section == 1 && indexPath.row > 0) {
+            selectedDistanceFilter = indexPath.row-1
+        }
+        filterTableView.reloadData()
+    }
+    
+    func comboCell(comboCell:ComboCell, didExpansionChanged value:Bool) {
+        distanceExpanded = value
+        self.filterTableView.reloadData()
     }
     
     func switchCell(switchCell: SwitchCell, didChangeValue value: Bool) {
@@ -80,6 +132,17 @@ class FilterViewController: UIViewController, UITableViewDataSource, UITableView
         categoryStates[indexPath!.row] = value
     }
 
+    func yelpDistances() -> [[String:String]] {
+        return [
+            ["name":"0.3 miles", "value":"0.3"],
+            ["name":"1 mile", "value":"1.0"],
+            ["name":"3 miles", "value":"3.0"],
+            ["name":"5 miles", "value":"5.0"],
+            ["name":"10 miles", "value":"10.0"],
+            ["name":"20 miles", "value":"20.0"]
+        ];
+    }
+    
     func yelpCategories() -> [[String:String]] {
         return [["name" : "Afghan", "code": "afghani"],
             ["name" : "African", "code": "african"],
