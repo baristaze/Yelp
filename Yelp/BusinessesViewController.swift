@@ -43,10 +43,11 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         
         let biz = self.businesses[indexPath.row]
         let bizCell = self.bizTableView.dequeueReusableCellWithIdentifier("yelp.biz.cell", forIndexPath: indexPath) as! BizTableCell
-        let bizPhotoUrl = NSURL(string:"https://pbs.twimg.com/profile_images/1532363355/sag.jpg")
-        let starUrl = NSURL(string:"http://dinesmart365.com/Images/stars/star_5.png")
-        bizCell.imageView?.setImageWithURL(bizPhotoUrl)
-        bizCell.ratingImageView.setImageWithURL(starUrl)
+        bizCell.bizNameLabel.text = biz.name
+        bizCell.addressLabel.text = biz.address
+        bizCell.categoriesLabel.text = biz.categories
+        bizCell.imageView?.setImageWithURL(biz.imageURL)
+        bizCell.ratingImageView.setImageWithURL(biz.ratingImageURL)
         
         return bizCell
     }
