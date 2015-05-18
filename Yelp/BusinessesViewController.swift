@@ -17,6 +17,9 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet weak var bizTableView: UITableView!
 
+    var searchText:String = ""
+    var categories:[String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,12 +29,9 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
         self.navigationItem.leftBarButtonItem = self.filterBarButton
         self.navigationItem.titleView = self.searchBar;
         self.searchBar.delegate = self
-        self.searchBar.placeholder = "Restaurants"
+        self.searchBar.placeholder = searchText
         
-        Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
-            self.businesses = businesses
-            self.bizTableView.reloadData()
-        }
+        self.reloadBusinesses()
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,7 +39,29 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
         // Dispose of any resources that can be recreated.
     }
 
-    func filter(filter: FilterViewController, didChangeValue distance: String, categories: String) {
+    func reloadBusinesses() {
+        
+        var query = searchText.isEmpty ? "Restaurants" : searchText
+        if(categories.isEmpty){
+            
+            Business.searchWithTerm(query) { (businesses: [Business]!, error: NSError!) -> Void in
+                self.businesses = businesses
+                self.bizTableView.reloadData()
+            }
+        }
+        else {
+            
+            Business.searchWithTerm(query, sort: .Distance, categories: self.categories, deals: false) { (businesses: [Business]!, error: NSError!) -> Void in
+                self.businesses = businesses
+                self.bizTableView.reloadData()
+            }
+        }
+    }
+    
+    func filter(filter: FilterViewController, didChangeValue distance: Float, categories: [String]) {
+        
+        self.categories = categories
+        self.reloadBusinesses()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,14 +101,16 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
         
-        println("searched")
-        /*
-        self.reloadTableData();
-        
+        self.searchText = searchText
+        self.reloadBusinesses()
         if(!self.isFiltered()) {
             NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("endSearching"), userInfo: nil, repeats: false)
         }
-        */
+    }
+    
+    func isFiltered() -> Bool {
+        var searchText = self.searchBar.text
+        return !searchText.isEmpty
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {

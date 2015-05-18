@@ -10,7 +10,7 @@ import UIKit
 
 @objc protocol FilterDelegate {
     
-    optional func filter(filter:FilterViewController, didChangeValue distance:String, categories:String)
+    optional func filter(filter:FilterViewController, didChangeValue distance:Float, categories:[String])
 }
 
 class FilterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SwitchCellDelegate, ComboCellDelegate {
@@ -41,7 +41,8 @@ class FilterViewController: UIViewController, UITableViewDataSource, UITableView
         dismissViewControllerAnimated(true, completion: {
             var cats = self.concatenateCategories()
             var dist = self.distances[self.selectedDistanceFilter]["value"]!
-            self.delegate?.filter?(self, didChangeValue:dist, categories:cats)
+            var distF = (dist as NSString).floatValue
+            self.delegate?.filter?(self, didChangeValue:distF, categories:cats)
         })
     }
     
@@ -49,16 +50,11 @@ class FilterViewController: UIViewController, UITableViewDataSource, UITableView
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func concatenateCategories() -> String {
-        var cats:String = ""
+    func concatenateCategories() -> [String] {
+        var cats:[String] = []
         for (index, state) in categoryStates {
             if state {
-                if(cats.isEmpty) {
-                    cats = "," + categories[index]["name"]!
-                }
-                else {
-                    cats = categories[index]["name"]!
-                }
+                cats.append(categories[index]["code"]!)
             }
         }
         
@@ -179,6 +175,52 @@ class FilterViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func yelpCategories() -> [[String:String]] {
+        
+        return [["name" : "Afghan", "code": "afghani"],
+            ["name" : "African", "code": "african"],
+            ["name" : "American, New", "code": "newamerican"],
+            ["name" : "Asian Fusion", "code": "asianfusion"],
+            ["name" : "Barbeque", "code": "bbq"],
+            ["name" : "Belgian", "code": "belgian"],
+            ["name" : "Bistros", "code": "bistros"],
+            ["name" : "Breakfast & Brunch", "code": "breakfast_brunch"],
+            ["name" : "Cafes", "code": "cafes"],
+            ["name" : "Cafeteria", "code": "cafeteria"],
+            ["name" : "Chilean", "code": "chilean"],
+            ["name" : "Chinese", "code": "chinese"],
+            ["name" : "Cuban", "code": "cuban"],
+            ["name" : "Diners", "code": "diners"],
+            ["name" : "Fast Food", "code": "hotdogs"],
+            ["name" : "Fish & Chips", "code": "fishnchips"],
+            ["name" : "French", "code": "french"],
+            ["name" : "Greek", "code": "greek"],
+            ["name" : "Halal", "code": "halal"],
+            ["name" : "Irish", "code": "irish"],
+            ["name" : "Italian", "code": "italian"],
+            ["name" : "Japanese", "code": "japanese"],
+            ["name" : "Kebab", "code": "kebab"],
+            ["name" : "Kosher", "code": "kosher"],
+            ["name" : "Kurdish", "code": "kurdish"],
+            ["name" : "Mediterranean", "code": "mediterranean"],
+            ["name" : "Mexican", "code": "mexican"],
+            ["name" : "Middle Eastern", "code": "mideastern"],
+            ["name" : "Mongolian", "code": "mongolian"],
+            ["name" : "Pizza", "code": "pizza"],
+            ["name" : "Portuguese", "code": "portuguese"],
+            ["name" : "Russian", "code": "russian"],
+            ["name" : "Salad", "code": "salad"],
+            ["name" : "Sandwiches", "code": "sandwiches"],
+            ["name" : "Seafood", "code": "seafood"],
+            ["name" : "Soup", "code": "soup"],
+            ["name" : "Southern", "code": "southern"],
+            ["name" : "Spanish", "code": "spanish"],
+            ["name" : "Steakhouses", "code": "steak"],
+            ["name" : "Sushi Bars", "code": "sushi"],
+            ["name" : "Thai", "code": "thai"],
+            ["name" : "Turkish", "code": "turkish"]]
+
+        
+        /*
         return [["name" : "Afghan", "code": "afghani"],
             ["name" : "African", "code": "african"],
             ["name" : "American, New", "code": "newamerican"],
@@ -348,5 +390,6 @@ class FilterViewController: UIViewController, UITableViewDataSource, UITableView
             ["name" : "Wok", "code": "wok"],
             ["name" : "Wraps", "code": "wraps"],
             ["name" : "Yugoslav", "code": "yugoslav"]]
+        */
     }
 }
