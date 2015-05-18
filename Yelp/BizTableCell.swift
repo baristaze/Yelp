@@ -10,8 +10,13 @@ import UIKit
 
 class BizTableCell: UITableViewCell {
 
-
     @IBOutlet weak var bizPhotoView: UIImageView!
+    @IBOutlet weak var reviewCountLabel: UILabel!
+    @IBOutlet weak var categoriesLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var bizNameLabel: UILabel!
+    
     @IBOutlet weak var ratingImageView: UIImageView!
     
     override func awakeFromNib() {
@@ -24,5 +29,4 @@ class BizTableCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }
