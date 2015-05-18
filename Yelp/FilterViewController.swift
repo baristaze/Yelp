@@ -8,6 +8,11 @@
 
 import UIKit
 
+@objc protocol FilterDelegate {
+    
+    optional func filter(filter:FilterViewController, didChangeValue distance:String, categories:String)
+}
+
 class FilterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SwitchCellDelegate, ComboCellDelegate {
 
     @IBOutlet weak var filterTableView: UITableView!
@@ -18,6 +23,8 @@ class FilterViewController: UIViewController, UITableViewDataSource, UITableView
     var distances: [[String:String]]!
     var distanceExpanded = false
     var selectedDistanceFilter:Int = 0
+    
+    weak var delegate:FilterDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +37,34 @@ class FilterViewController: UIViewController, UITableViewDataSource, UITableView
         self.categories = self.yelpCategories()
     }
 
+    @IBAction func onSearchButton(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: {
+            var cats = self.concatenateCategories()
+            var dist = self.distances[self.selectedDistanceFilter]["value"]!
+            self.delegate?.filter?(self, didChangeValue:dist, categories:cats)
+        })
+    }
+    
+    @IBAction func onCancelButton(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func concatenateCategories() -> String {
+        var cats:String = ""
+        for (index, state) in categoryStates {
+            if state {
+                if(cats.isEmpty) {
+                    cats = "," + categories[index]["name"]!
+                }
+                else {
+                    cats = categories[index]["name"]!
+                }
+            }
+        }
+        
+        return cats
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

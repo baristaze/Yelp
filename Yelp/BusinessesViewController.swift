@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UISearchBarDelegate, FilterDelegate {
 
     var businesses: [Business]!
     let defaultImage:UIImage? = UIImage(named: "yelpLogo.png")
@@ -39,6 +39,9 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
         // Dispose of any resources that can be recreated.
     }
 
+    func filter(filter: FilterViewController, didChangeValue distance: String, categories: String) {
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.businesses?.count ?? 0;
     }
@@ -103,14 +106,9 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
         self.searchBar.resignFirstResponder()
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        var navigationVC = segue.destinationViewController as! UINavigationController
+        var vc = navigationVC.topViewController as! FilterViewController
+        vc.delegate = self
     }
-    */
-
 }
