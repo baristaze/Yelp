@@ -31,4 +31,9 @@ Time spent: 14
 
 ### Walkthrough
 
+Portrait  
+![alt text](https://github.com/baristaze/Yelp/blob/master/Yelp1.gif "Portrait")  
+
+Landscape  
+![alt text](https://github.com/baristaze/Yelp/blob/master/Yelp2.gif "Landscape")  
 
