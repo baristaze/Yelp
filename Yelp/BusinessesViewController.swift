@@ -91,6 +91,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
         return cell
     }
     
+    /*
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 79
     }
@@ -98,7 +99,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UISearc
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 79;
     }
-    
+    */
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String){
         
         self.searchText = searchText
